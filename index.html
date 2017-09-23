@@ -2,7 +2,7 @@
 <html ng-app="DIApp">
   <head>
     <meta charset="utf-8">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular.min.js"></script>
+    <script src="angular.min.js"></script>
     <script src="app.js"></script>
     <title>hello</title>
   </head>
@@ -11,6 +11,48 @@
     <div ng-controller="DIController">
       <input type="text" ng-model="name" ng-blur="upper()"/>
       {{name}}
+      {{sayHello()}}<br>
+      {{sayMorning()}} <br>
+      {{sayMorning() | farewell : 'morning' : 'bye' }} <br>
+      {{sayMorning() | farewell : 'good' : 'bad' | uppercase }}
+      <div>
+          <button ng-click="feed()">Feed</button>
+          Cost: {{cookieCost | currency : "golden# " : 3}}
+        <br>
+        <img width="50%" ng-src="images/kunia_{{stateOfBeing}}">
+      </div>
     </div>
+
+    <h1>Digest Cycle</h1>
+    <div ng-controller="CounterController">
+        <button ng-click="showNumberOfWatchers()">
+            Log # of watchers
+        </button>
+        <button ng-click="countOnce()">Increase  counter</button>
+        <button ng-click="upCounter()">Increase  counter</button>
+        <div>
+            Once counter : {{onceCounter}}<br>
+            Regular counter : {{counter}}
+        </div>
+    </div>
+
+    <div ng-controller='ShoppingListController'>
+        <h3>Shopping List:</h3>
+        <!-- <ul>
+          <li ng-repeat="item in shoppingList1">{{item}}</li>
+        </ul> -->
+        <!-- <ul>
+          <li ng-repeat="item in shoppingList2"> There are {{item.quantity}} of {{item.name}}</li>
+        </ul> -->
+        <input type="text" ng-model="shoppingList2[0].quantity">
+        <ul>
+          <li ng-repeat="item in shoppingList2"> {{$index + 1}} There are {{item.quantity}} of {{item.name}}</li>
+        </ul>
+        <input type="text" ng-model="newItemName" placeholder="item name">
+        <input type="text" ng-model="newItemQuantity" placeholder="item quantity">
+        <button ng-click="addToList()">Add to list</button>
+
+    </div>
+
   </body>
 </html>
